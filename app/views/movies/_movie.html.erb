@@ -1,0 +1,25 @@
+<div id="<%= dom_id movie %>">
+  <h4 class="card-title">
+    <%= movie.name %>
+  </h4>
+
+  <p>
+    Release date:
+    <%= movie.release_date.strftime('%d/%m/%Y') %>
+  </p>
+  <p>
+    <% rate=(movie.rating_average || 0.0).floor(1) %>
+    <% (5).times do %>
+      <% if rate>=1 %>
+        <i class="bi bi-star-fill" style="font-size: 20px; color: rgb(255, 210, 48);"></i>
+        <% rate=rate-1 %>
+      <% elsif rate>=0.5 && rate<=0.9 %>
+        <i class="bi bi-star-half" style="font-size: 20px; color: rgb(255, 210, 48);"></i>
+        <% rate=rate-1 %>
+      <% else %>
+        <i class="bi bi-star" style="font-size: 20px; color: rgb(255, 210, 48);"></i>
+      <% end %>
+    <% end %>
+    <%= (movie.rating_average || 0.0).floor(1) %>
+  </p>
+</div>

@@ -1,0 +1,6 @@
+<% if @comment.errors.any? %>
+document.getElementById('comment_form').innerHTML = ("<%= escape_javascript(render partial:'comments/form', locals:{ comment: @comment} ) %>");
+<% else %>
+document.getElementById('comment_list').innerHTML = ("<%= escape_javascript(render partial:'comments/comment', locals:{ comments: @comments} ) %>");
+document.getElementById('comment_form').innerHTML = ("<%= escape_javascript(render partial:'comments/form', locals:{ comment: @movie.comments.new} ) %>");
+<% end %>

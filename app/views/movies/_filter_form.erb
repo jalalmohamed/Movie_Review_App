@@ -1,0 +1,10 @@
+<%= form_with url: movies_url, method: :get do |form| %>
+  <div class="row g-3 align-items-center">
+    <div class="col-sm-3"><%= form.text_field :movie_name, value: params[:movie_name], class: 'form-control', placeholder: 'Movie name' %></div>
+
+    <div class="col-auto"><%= form.label :release_date %></div>
+    <div class="col-auto"><%= form.date_field :release_date, value: params[:release_date], class: 'form-control' %></div>
+
+    <div class="col-auto"><%= form.submit 'show', class: "btn btn-success"%></div>
+  </div>
+<% end %>

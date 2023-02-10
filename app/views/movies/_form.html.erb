@@ -1,0 +1,32 @@
+<%= form_with(model: movie) do |form| %>
+  <% if movie.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+      <ul>
+        <% movie.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3 col-sm-5">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3 col-sm-5">
+    <%= form.label :release_date, style: "display: block" %>
+    <%= form.date_field :release_date, class: "form-control" %>
+  </div>
+
+  <div class="mb-3 col-sm-5">
+    <%= form.label :poster %>
+    <%= form.file_field :image ,class: "form-control",type: "file", id: "formFile"%>
+  </div>
+
+  <div class="actions" data-disable-with="<i class='fa fa-spinner'></i> Loading...">
+    &emsp;<%= form.submit class: 'btn btn-warning' %>
+  </div>
+<% end %>

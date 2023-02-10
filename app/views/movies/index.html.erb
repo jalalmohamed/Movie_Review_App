@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag 'index', media: 'all', 'data-turbolinks-track': 'reload' %>
+<div style="margin-left: 600px;">
+  <%= render 'filter_form' %>
+</div>
+<h1>Movies</h1>
+
+<div id="movies">
+  <div class="row" >
+  <% @movies.each do |movie| %>
+      <div class="col-md-3">
+        <div class="card">
+          <% if movie.image.attached? %>
+            <div class="card-img-top"><%= image_tag(movie.image)%></div>
+          <% end %>
+          <div class="card-body">
+            <%= render movie %>
+            <%= link_to "", movie, class: "stretched-link" %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+  </div>
+</div>
+
+<%= link_to "New movie", new_movie_path, class: 'btn btn-primary' %>
+<br><br>
+<p id="new_form"></p>
+<br><br>

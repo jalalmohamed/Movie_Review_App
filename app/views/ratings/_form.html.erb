@@ -1,0 +1,26 @@
+<%= form_with(model: [@movie, rating]) do |form| %>
+  <% if rating.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(rating.errors.count, 'error') %> prohibited this rating from being saved:</h2>
+      <ul>
+        <% rating.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.hidden_field :movie_id %>
+  </div>
+
+  <div>
+    <%= form.label :star, 'Star:' %>
+    <%= form.collection_radio_buttons :star, (1..5).reverse_each.map { |n| [n, "#{n}⭐"] }, :first, :last do |b| %>
+      <%= b.radio_button %>
+      <%= b.label(style: 'display: inline') %>
+    <% end %>
+    <%= form.submit 'Add' %>
+  </div>
+
+<% end %>

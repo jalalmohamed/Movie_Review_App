@@ -1,0 +1,40 @@
+
+<%= stylesheet_link_tag 'index', media: 'all', 'data-turbolinks-track': 'reload' %>
+<div class="card">
+  <% if @movie.image.attached? %>
+    <div class="card-img-top"><%= image_tag(@movie.image)%></div>
+  <% end %>
+  <div class="card-body">
+    <%= render @movie %>
+    <%= link_to "Back", movies_path, class: 'btn btn-secondary' %>
+    <%= link_to "Edit", edit_movie_path(@movie), class: 'btn btn-warning' %>
+    <%= link_to "Delete", @movie, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+  </div>
+</div>
+<br>
+<div>
+  <h5>Ratings:</h5>
+  <% star_size=30 %>
+  <% @ratings.each_pair do |star, count| %>
+    <%= count %> times
+    <% star.times do %>
+      <i class="bi bi-star-fill" style="font-size:<%=star_size%>px; color: rgb(255, 210, 48);"></i>
+    <% end %>
+    <% star_size=star_size-2 %>
+    <br>
+  <% end %>
+</div>
+<br>
+<div>
+  <h5>Add Rating</h5>
+  <%= render "ratings/form", rating: @movie.ratings.build %>
+</div>
+
+<div style="padding: 10px 0" id="comment_form">
+  <%= render 'comments/form', comment: @comment %>
+</div>
+<div id="comment_list">
+  <% if @comments.present? %>
+    <%= render 'comments/comment', comments: @comments %>
+  <% end %>
+</div>
