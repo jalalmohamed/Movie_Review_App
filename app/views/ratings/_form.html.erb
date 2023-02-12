@@ -16,11 +16,11 @@
 
   <div>
     <%= form.label :star, 'Star:' %>
-    <%= form.collection_radio_buttons :star, (1..5).reverse_each.map { |n| [n, "#{n}⭐"] }, :first, :last do |b| %>
+    <%= form.collection_radio_buttons :star, (1..5).each.map { |n| [n, "#{n}⭐"] }, :first, :last do |b| %>
       <%= b.radio_button %>
       <%= b.label(style: 'display: inline') %>
     <% end %>
-    <%= form.submit 'Add' %>
+    <%= form.submit 'Add', class: 'btn btn-success' %>
   </div>
 
 <% end %>

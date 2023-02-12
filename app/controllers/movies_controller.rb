@@ -3,23 +3,22 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
+    @movies = Movie.order(rating_average: :desc).with_attached_image.all
     if params[:movie_name].present?
       @movie_name=params[:movie_name]
-      @movies = Movie.filter_movie(@movie_name).all
+      @movies = @movies.filter_movie(@movie_name).all
     elsif params[:release_date].present?
       @release_date =Date.parse(params[:release_date])
-      @movies = Movie.filter_movie_date(@release_date).all
-    else
-      @movies = Movie.all
+      @movies = @movies.filter_movie_date(@release_date).all
     end
   end
 
   # GET /movies/1 or /movies/1.json
   def show
-    default_ratings = Hash[(1..5).reverse_each.map { |n| [n, 0] }]
-    @ratings = default_ratings.merge @movie.ratings.group(:star).count
+    ratings = Hash[(1..5).reverse_each.map { |n| [n, 0] }]
+    @ratings = ratings.merge @movie.ratings.group(:star).count
     @comment = Comment.new
-    @comments = @movie.comments
+    @comments = @movie.comments.includes(:user)
   end
 
   # GET /movies/new

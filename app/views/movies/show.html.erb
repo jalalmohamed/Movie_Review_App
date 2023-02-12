@@ -13,7 +13,7 @@
 </div>
 <br>
 <div>
-  <h5>Ratings:</h5>
+  <h5><b>Ratings:</b></h5>
   <% star_size=30 %>
   <% @ratings.each_pair do |star, count| %>
     <%= count %> times
@@ -26,7 +26,7 @@
 </div>
 <br>
 <div>
-  <h5>Add Rating</h5>
+  <h5><b>Add Rating</b></h5>
   <%= render "ratings/form", rating: @movie.ratings.build %>
 </div>
 

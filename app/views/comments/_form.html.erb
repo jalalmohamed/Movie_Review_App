@@ -1,23 +1,33 @@
-<%= form_with(model: [@movie, comment], data:{remote: true} ) do |form| %>
-  <% if comment.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+<div class="card" style="width: 45rem;">
+  <div class="card-body">
+    <%= form_with(model: [@movie, comment], data:{remote: true} ) do |form| %>
+      <% if comment.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
-      <ul>
-        <% comment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% comment.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <div class="field">
-    <%= form.label :Comments, style: "display: block" %>
-    <%= form.text_field :description %>
-    <%= form.submit class: 'btn btn-primary' %>
+      <div class="mb-3">
+        <h5><%= form.label :Add_Comment, style: "display: block",  class: 'form-label' %></h5>
+        <div class="row g-3">
+          <div class="col-sm-9">
+            <%= form.text_field :description, class: 'form-control' %>
+          </div>
+          <div class="col-auto">
+            <%= form.submit 'Submit', class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+
+      </div>
+    <% end %>
   </div>
-
-  <div class="actions">
-
-  </div>
-<% end %>
+</div>
